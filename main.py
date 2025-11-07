@@ -12,7 +12,7 @@ from context import Context
 from detector import Detector
 from gamepad import VGamepad
 from mapping import PoseFeature, PoseControlMapper
-from gui import GUI
+from gui_test import GUI
 
 # Load configuration
 config = configparser.ConfigParser()

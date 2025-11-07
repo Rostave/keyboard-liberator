@@ -40,7 +40,7 @@ except:
 
 # 导入 GUI
 import importlib.util
-spec = importlib.util.spec_from_file_location("gui", "gui copy.py")
+spec = importlib.util.spec_from_file_location("gui", "gui_test.py")
 gui_module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(gui_module)
 
