@@ -103,12 +103,11 @@ while running:
     else:
         brake *= 0.95  # 自然衰减
     
-    # 清屏
+    # 清屏（黑色背景会完全透明）
     gui.clear_color()
     
-    # 渲染虚拟摄像头画面
-    dummy_frame = create_dummy_frame()
-    gui.render_webcam_capture(dummy_frame)
+    # 不渲染摄像头画面，保持背景透明
+    # gui.render_webcam_capture(dummy_frame)  # 注释掉
     
     # 绘制游戏控制UI
     gui.render_game_controls(

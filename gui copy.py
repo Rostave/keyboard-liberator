@@ -8,6 +8,8 @@ from context import Context
 from time import time as tm
 import pygame
 import cv2
+import sys
+import ctypes
 
 
 class GUI:
@@ -26,6 +28,9 @@ class GUI:
         self.win_resolution = self.reso
         self.screen = pygame.display.set_mode(self.win_resolution)
         self.clock = pygame.time.Clock()
+        
+        # 设置窗口透明（仅Windows）
+        self._set_window_transparency()
 
         self.show_caption_fps = ctx.cfg.getboolean('window', "show_caption_fps")
         self.delta_time: float = 0.0
@@ -35,6 +40,34 @@ class GUI:
         self._fps_accum_time: int = 0
         self._fps_accum_count: int = 0
         self._smoothed_fps: int = 0
+
+    def _set_window_transparency(self):
+        """
+        Set window transparency on Windows platform.
+        """
+        if sys.platform == 'win32':
+            try:
+                # 获取窗口句柄
+                hwnd = pygame.display.get_wm_info()['window']
+                
+                # Windows API 常量
+                GWL_EXSTYLE = -20
+                WS_EX_LAYERED = 0x80000
+                LWA_ALPHA = 0x2
+                LWA_COLORKEY = 0x1
+                
+                # 设置窗口为分层窗口
+                _winlib = ctypes.windll.user32
+                _winlib.SetWindowLongA(hwnd, GWL_EXSTYLE, 
+                                      _winlib.GetWindowLongA(hwnd, GWL_EXSTYLE) | WS_EX_LAYERED)
+                
+                # 色键透明：让黑色(0,0,0)完全透明
+                colorkey = 0x000000  # 黑色 RGB(0,0,0)
+                _winlib.SetLayeredWindowAttributes(hwnd, colorkey, 0, LWA_COLORKEY)
+                
+                print("窗口色键透明已启用 (黑色背景将完全透明)")
+            except Exception as e:
+                print(f"设置窗口透明失败: {e}")
 
     def clock_tick(self):
         """
@@ -62,9 +95,9 @@ class GUI:
 
     def clear_color(self):
         """
-        Clear the screen with the specified color.
+        Clear the screen with black (transparent when colorkey is enabled).
         """
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((0, 0, 0))  # 黑色背景将完全透明
 
     @staticmethod
     def update_display():
