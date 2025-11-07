@@ -13,8 +13,8 @@ class Context:
         self.gui = None  # GUI window reference
         self.mapper = None  # pose-control mapper instance
         self.gamepad = None  # virtual gamepad reference
-        self.features = None  # pose features reference
         self.tkparam = None  # tkparam window reference
 
     def close(self):
-        ...
+        if self.tkparam:
+            self.tkparam.quit()

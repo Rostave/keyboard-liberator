@@ -27,9 +27,7 @@ gui = GUI(ctx, RESO, FPS)
 detector = Detector(ctx)
 mapper = PoseControlMapper(ctx)
 gamepad = VGamepad()
-features = PoseFeature()
 ctx.gamepad = gamepad
-ctx.features = features
 
 # Main loop
 while True:
@@ -48,9 +46,9 @@ while True:
     gui.render_webcam_capture(frame)  # Draw webcam capture
     landmarks = detector.get_landmarks(frame)  # Detect pose landmarks
     gui.render_pose_landmarks(landmarks)  # Draw pose landmarks
-    mapper.extract_features(landmarks)  # Extract pose features
+    features = mapper.extract_features(landmarks)  # Extract pose features
     gui.render_pose_features(features)  # Draw pose features
-    mapper.trigger_control(features)  # Map pose features to gamepad controls
+    mapper.trigger_control()  # Map pose features to gamepad controls
     gui.update_display()  # Update GUI display
 
 # Release resources
