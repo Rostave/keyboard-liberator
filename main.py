@@ -54,5 +54,6 @@ while True:
 # Release resources
 camera.release()
 gamepad.release()
+detector.close()
 gui.quit()
 ctx.close()
