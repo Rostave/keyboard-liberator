@@ -49,7 +49,7 @@ spec.loader.exec_module(gui_module)
 GUI = gui_module.GUI
 
 # 初始化 GUI
-gui = GUI(ctx, reso=(800, 600), fps=60)
+gui = GUI(ctx, reso=(500, 400), fps=60)
 
 # 创建一个虚拟的摄像头画面（纯色背景）
 def create_dummy_frame(width=640, height=480):
