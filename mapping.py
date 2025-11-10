@@ -13,19 +13,25 @@ class ControlFeature:
     """
     Containing process landmark features and game control parameters.
     """
-    def __init__(self):
+    def __init__(self, ctx: Context):
+        self.ctx = ctx
+
+        # Triggering parameters
+        self.torso_pitch: float = 0.0
+
+        # Visualizing parameters
         self.hand_left_center: List = [0.0, 0.0]
         self.hand_right_center: List = [0.0, 0.0]
         self.hands_center: List = [0.0, 0.0]
-        self.steering_thresh_y: float = 0.1
-
-        self.torso_pitch: float = 0.0
-
         self.brake_pressure: float = 0.0
         self.throttle_pressure: float = 0.0
         self.handbrake_active: bool = False
         self.left_pressure: float = 0.0
         self.right_pressure: float = 0.0
+
+        # Control parameters
+        # self.steering_left_border_angle = ctx.tkparam.get_scalar()
+        # self.steering_left_border_angle
 
 
 class PoseControlMapper:
@@ -46,7 +52,7 @@ class PoseControlMapper:
     def __init__(self, ctx: Context):
         self.ctx: Context = ctx
         ctx.mapper = self
-        self.features = ControlFeature()
+        self.features = ControlFeature(ctx)
 
         # previous button states, trigger press/release only on state changes
         self._prev_menu_pressed = False
@@ -94,7 +100,10 @@ class PoseControlMapper:
         rcx, rcy, rcz = avg(right_points)
         f.hand_left_center = [1-lcx, lcy]
         f.hand_right_center = [1-rcx, rcy]
-        f.hands_center = [-(lcx + rcx) / 2.0, (lcy + rcy) / 2.0]
+        f.hands_center = [1 - (lcx+rcx)/2.0, (lcy+rcy)/2.0]
+
+        angle_to_hori = math.degrees(math.atan2(rcy-lcy, rcx-lcx))
+        print(angle_to_hori)
 
         return f
 

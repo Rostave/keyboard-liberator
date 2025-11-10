@@ -1,6 +1,7 @@
 """
 Group: Keyboard Liberators
 """
+from tkparam import TKParamWindow
 
 
 class Context:
@@ -14,7 +15,7 @@ class Context:
         self.preset_mgr = None  # GUI settings reference
         self.mapper = None  # pose-control mapper instance
         self.gamepad = None  # virtual gamepad reference
-        self.tkparam = None  # tkparam window reference
+        self.tkparam = TKParamWindow()  # tkparam window reference
 
     @property
     def active_preset(self):
