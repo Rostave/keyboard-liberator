@@ -53,6 +53,7 @@ class GUI:
         self.__load_ui_icons()
 
         self.show_cam_capture: bool = True
+        self.show_pose_detection: bool = True
         self.fist_center_circle_radius: int = -1
         self.fist_center_circle_color: Color = Color(255, 255, 255)
 
@@ -63,6 +64,7 @@ class GUI:
         Called when the active preset is updated.
         """
         self.show_cam_capture = preset.visual["show_cam_capture"]
+        self.show_pose_detection = preset.visual["show_pose_estimation"]
         self.fist_center_circle_radius = preset.visual["fist_center_circle_radius"]
         self.fist_center_circle_color = Color(preset.visual["fist_center_circle_color"])
 
@@ -193,7 +195,7 @@ class GUI:
         """
         Visualize the webcam capture to the screen.
         """
-        if not self.show_cam_capture:
+        if not self.show_cam_capture and not self.show_pose_detection:
             return
         frame = pygame.surfarray.make_surface(np_frame)
         frame = pygame.transform.rotate(frame, -90)
