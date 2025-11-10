@@ -1,0 +1,5 @@
+mediapipe
+numpy
+pygame
+tkparam==0.1.1
+vgamepad==0.1.0
