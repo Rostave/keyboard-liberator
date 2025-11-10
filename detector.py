@@ -3,6 +3,7 @@ Group: Keyboard Liberators
 This program applies MediaPipe to detect user pose and obtain landmarks.
 When receiving invocation from the main loop, it will call the detector instance for pose landmarks.
 """
+import numpy as np
 
 try:
     import mediapipe as mp
@@ -13,6 +14,7 @@ except Exception as e:
     import mediapipe as mp
 
 import cv2
+import numpy as np
 from context import Context
 from presets import Preset
 
@@ -62,7 +64,7 @@ class Detector:
 
         if results.pose_landmarks:
             if not self.show_cam_capture:
-                frame *= 0.0
+                frame = np.zeros_like(frame)  # set frame to pure black
             # Visualize the pose landmarks
             if self.visualize_landmarks:
                 mp_drawing = mp.solutions.drawing_utils
