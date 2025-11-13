@@ -179,11 +179,6 @@ class GUI:
         # Fists
         pos_l = self._get_pos_from_per(f.hand_left_center)
         pos_r = self._get_pos_from_per(f.hand_right_center)
-        if self.show_pose_estimation:
-            pygame.draw.circle(
-                self.screen, self.fist_center_circle_color, pos_l, self.fist_center_circle_radius, 0)
-            pygame.draw.circle(
-                self.screen, self.fist_center_circle_color, pos_r, self.fist_center_circle_radius, 0)
 
         # Draw virtual steer wheel
         diameter = math.dist(pos_l, pos_r)
@@ -192,6 +187,21 @@ class GUI:
         center_pos = self._get_pos_from_per(f.hands_center)
         rect = scaled_wheel_icon.get_rect(center=center_pos)
         self.screen.blit(scaled_wheel_icon, rect)
+
+        fist_center = (pos_l[0]+pos_r[0])//2, (pos_l[1]+pos_r[1])//2
+        if self.show_pose_estimation:
+            pygame.draw.circle(
+                self.screen, self.fist_center_circle_color, pos_l, self.fist_center_circle_radius, 0)
+            pygame.draw.circle(
+                self.screen, self.fist_center_circle_color, pos_r, self.fist_center_circle_radius, 0)
+            r: float = self.ctx.mapper.features.brake_radius_min * self.reso[0]
+            pygame.draw.circle(self.screen, self.fist_center_circle_color, fist_center, r, 1)
+            r = self.ctx.mapper.features.brake_radius_max * self.reso[0]
+            pygame.draw.circle(self.screen, self.fist_center_circle_color, fist_center, r, 1)
+            r = self.ctx.mapper.features.throttle_radius_min * self.reso[0]
+            pygame.draw.circle(self.screen, self.fist_center_circle_color, fist_center, r, 1)
+            r = self.ctx.mapper.features.throttle_radius_max * self.reso[0]
+            pygame.draw.circle(self.screen, self.fist_center_circle_color, fist_center, r, 1)
 
     def render_game_controls(self, feat: ControlFeature) -> None:
         self.__render_game_controls(feat.brake_pressure, feat.throttle_pressure, feat.handbrake_active,

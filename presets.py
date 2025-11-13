@@ -26,9 +26,13 @@ class Preset:
             "steering safe angle": 7.0,
             "steering left border": 45.0,
             "steering right border": 45.0,
-            "throttle measure center": 6.0,
-            "throttle safe distance": 0.6,
-            "throttle max distance": 2.0,
+            # "throttle measure center": 6.0,
+            # "throttle safe distance": 0.6,
+            # "throttle max distance": 2.0,
+            "brake radius min": 0.098998125,
+            "brake radius max": 0.1922890625,
+            "throttle radius min": 0.238914375,
+            "throttle radius max": 0.30886625
         }
         """Mapping settings"""
 

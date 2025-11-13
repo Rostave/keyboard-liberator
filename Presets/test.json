@@ -7,8 +7,9 @@
     "steering safe angle": 7.0,
     "steering left border": 61.2853,
     "steering right border": 61.2853,
-    "throttle measure center": 6.0,
-    "throttle safe distance": 0.3269,
-    "throttle max distance": 2.0
+    "brake radius min": 0.098998125,
+    "brake radius max": 0.1922890625,
+    "throttle radius min": 0.238914375,
+    "throttle radius max": 0.30886625
   }
 }
