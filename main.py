@@ -30,7 +30,7 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAP_SETTING[0][1])
 gui = GUI(ctx, CAP_SETTING[0], CAP_SETTING[1])
 detector = Detector(ctx)
 mapper = PoseControlMapper(ctx)
-gamepad = VGamepad(skip=True)
+gamepad = VGamepad(skip=False)
 ctx.gamepad = gamepad
 preset_mgr.load_presets()
 

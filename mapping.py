@@ -147,3 +147,7 @@ class PoseControlMapper:
         # steering control
         gp.left_joystick(f.right_pressure - f.left_pressure, 0.0)
 
+        # throttle and brake
+        gp.right_trigger(f.throttle_pressure)
+        gp.left_trigger(f.brake_pressure)
+

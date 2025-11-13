@@ -5,7 +5,7 @@
   },
   "mapping": {
     "steering safe angle": 7.0,
-    "steering left border": 45.0,
-    "steering right border": 45.0
+    "steering left border": 60.5025,
+    "steering right border": 61.2853
   }
 }
