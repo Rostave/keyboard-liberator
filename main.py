@@ -24,6 +24,7 @@ from gui import GUI
 config = configparser.ConfigParser()
 config.read('sysconfig.ini')
 os_name = check_os()
+print(f"Current OS: {os_name}")
 
 # Initialize components
 ctx = Context(config)
