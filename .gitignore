@@ -211,3 +211,4 @@ __marimo__/
 /.venv-*/
 tkparam/test_window.py
 tkparam/test_scalar.py
+/Presets/test.json
