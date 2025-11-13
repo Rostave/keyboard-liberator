@@ -5,7 +5,7 @@ The loop handles the process flow from image capturing to landmark detection to 
 """
 
 from utils import check_os
-if check_os() == "Windows1":
+if check_os() == "Windows":
     from control.gamepad import VGamepadWin
     gamepad = VGamepadWin(skip=False)
 else:
