@@ -5,11 +5,11 @@
   },
   "mapping": {
     "steering safe angle": 7.0,
-    "steering left border": 61.2853,
-    "steering right border": 61.2853,
-    "brake radius min": 0.098998125,
-    "brake radius max": 0.1922890625,
-    "throttle radius min": 0.238914375,
-    "throttle radius max": 0.30886625
+    "steering left border": 45.1304,
+    "steering right border": 44.6981,
+    "brake radius min": 0.099,
+    "brake radius max": 0.1923,
+    "throttle radius min": 0.2389,
+    "throttle radius max": 0.3089
   }
 }
