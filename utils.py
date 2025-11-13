@@ -8,6 +8,7 @@ import pygame
 import ctypes
 from tkinter import messagebox
 from typing import Union, List
+import platform
 
 
 def L(landmarks, i):
@@ -122,3 +123,12 @@ def fold_tkparam_win_on_close():
 
 def save_preset_on_close() -> bool:
     return messagebox.askyesno("Save preset?", "Do you want to save the current preset?")
+
+
+def check_os() -> str:
+    os_name = platform.system()
+    if os_name not in ["Windows", "Darwin"]:
+        print(f"Not supported OS: '{os_name}', program quit!")
+        exit(-1)
+    return os_name
+

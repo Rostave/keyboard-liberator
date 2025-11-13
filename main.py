@@ -4,20 +4,26 @@ Main entrance of the program. The code initializes components and maintain the m
 The loop handles the process flow from image capturing to landmark detection to pose-control mapping.
 """
 
-import pygame
+from utils import check_os
+if check_os() == "Windows1":
+    from control.gamepad import VGamepadWin
+    gamepad = VGamepadWin(skip=False)
+else:
+    from control.keyboard import KeyboardController
+    gamepad = KeyboardController()
+
 import cv2
 import configparser
-
 from context import Context
 from presets import PresetManager
 from detector import Detector
-from gamepad import VGamepad
 from mapping import PoseControlMapper
 from gui import GUI
 
 # Load configuration
 config = configparser.ConfigParser()
 config.read('sysconfig.ini')
+os_name = check_os()
 
 # Initialize components
 ctx = Context(config)
@@ -30,7 +36,6 @@ camera.set(cv2.CAP_PROP_FRAME_HEIGHT, CAP_SETTING[0][1])
 gui = GUI(ctx, CAP_SETTING[0], CAP_SETTING[1])
 detector = Detector(ctx)
 mapper = PoseControlMapper(ctx)
-gamepad = VGamepad(skip=False)
 ctx.gamepad = gamepad
 preset_mgr.load_presets()
 
@@ -64,7 +69,7 @@ while True:
 
 # Release resources
 camera.release()
-gamepad.release()
+gamepad.close()
 detector.close()
 ctx.close()
 gui.quit()
