@@ -44,11 +44,12 @@ def dist_pow(p1: Union[List, tuple], p2: Union[List, tuple], e) -> float:
 def set_window_topmost(set_topmost: bool) -> None:
     """Set window topmost on Windows platform."""
     # TODO: not work!
-    hwnd = pygame.display.get_wm_info()['window']
-    if set_topmost:
-        ctypes.windll.user32.SetWindowPos(hwnd, -1, 0, 0, 0, 0, 0x0003)
-    else:
-        ctypes.windll.user32.SetWindowPos(hwnd, -2, 0, 0, 0, 0, 0x0003)
+    if sys.platform == 'win32':
+        hwnd = pygame.display.get_wm_info()['window']
+        if set_topmost:
+            ctypes.windll.user32.SetWindowPos(hwnd, -1, 0, 0, 0, 0, 0x0003)
+        else:
+            ctypes.windll.user32.SetWindowPos(hwnd, -2, 0, 0, 0, 0, 0x0003)
 
 
 def set_window_transparency(set_transparent: bool) -> None:

@@ -111,10 +111,10 @@ class PoseControlMapper:
 
         # Horizontal - 0 degree; Steer right to 90 degree; Steer left to -90
         f.steer_angle = math.degrees(math.atan2(rcx-lcx, rcy-lcy))+90.0
-        safe_angle = f.steering_safe_angle.get()
-        f.left_pressure = clamp01((-f.steer_angle-safe_angle) / f.steering_left_border_angle.get())\
+        safe_angle = f.steering_safe_angle
+        f.left_pressure = clamp01((-f.steer_angle-safe_angle) / f.steering_left_border_angle)\
             if f.steer_angle < 0 else 0.0
-        f.right_pressure = clamp01((f.steer_angle-safe_angle) / f.steering_right_border_angle.get()) \
+        f.right_pressure = clamp01((f.steer_angle-safe_angle) / f.steering_right_border_angle) \
             if f.steer_angle > 0 else 0.0
 
         # Throttle and brake
@@ -137,9 +137,9 @@ class PoseControlMapper:
         # print(f"{len_s/len_h}, {f.torso_pitch}")
 
         # Normalize
-        throttle_center = f.throttle_dist_ratio_center.get()
-        throttle_dist = f.throttle_dist_ratio_max_dist.get()
-        throttle_safe_dist = f.throttle_dist_ratio_safe_dist.get()
+        throttle_center = f.throttle_dist_ratio_center
+        throttle_dist = f.throttle_dist_ratio_max_dist
+        throttle_safe_dist = f.throttle_dist_ratio_safe_dist
         throttle_real_dist = throttle_dist - throttle_safe_dist
         throttle_thresh = throttle_center + throttle_safe_dist
         brake_thresh = throttle_center - throttle_safe_dist
