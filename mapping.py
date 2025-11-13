@@ -54,11 +54,10 @@ class ControlFeature:
             # self.throttle_dist_ratio_center = ctx.tkparam.scalar("throttle measure center", 6.0, 0.0, 9.0)
             # self.throttle_dist_ratio_safe_dist = ctx.tkparam.scalar("throttle safe distance", 0.6, 0.0, 2.0)
             # self.throttle_dist_ratio_max_dist = ctx.tkparam.scalar("throttle max distance", 2.0, 0.0, 5.0)
-            self.brake_radius_min = ctx.tkparam.scalar("brake radius min", 6.0, 0.0, 500.0)
-
-            self.brake_radius_max = ctx.tkparam.scalar("brake radius max", 6.001, 0.0, 500.0)
-            self.throttle_radius_min = ctx.tkparam.scalar("throttle radius min", 6.002, 0.0, 500.0)
-            self.throttle_radius_max = ctx.tkparam.scalar("throttle radius max", 6.003, 0.0, 500.0)
+            self.brake_radius_min = ctx.tkparam.scalar("brake radius min", 6.0, 0.0, 1.0)
+            self.brake_radius_max = ctx.tkparam.scalar("brake radius max", 6.001, 0.0, 1.0)
+            self.throttle_radius_min = ctx.tkparam.scalar("throttle radius min", 6.002, 0.0, 1.0)
+            self.throttle_radius_max = ctx.tkparam.scalar("throttle radius max", 6.003, 0.0, 1.0)
 
 
 class PoseControlMapper:
