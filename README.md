@@ -28,9 +28,12 @@
 
 ## Introduction
 
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Game Mechanism
+
+## Features
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
