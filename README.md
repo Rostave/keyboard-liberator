@@ -28,12 +28,52 @@
 
 ## Introduction
 
+Controller Liberator is a gesture-based game controller that transforms your body movements into game controls using computer vision and pose detection. By leveraging MediaPipe's pose estimation, this application allows you to control racing games (or other compatible games) through hand gestures and body postures captured by your webcam.
+
+The system provides real-time visual feedback with a transparent overlay window, showing your detected hand positions and current control states (steering, throttle, brake). It's designed to be fun, accessible, and works across multiple platforms.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Features
+
+- **Real-time Pose Detection**: Uses MediaPipe to track 33 body landmarks with high accuracy
+- **Gesture-to-Control Mapping**: Converts hand positions into game controls (steering, throttle, brake)
+- **Cross-Platform Support**: 
+  - **Windows**: Virtual gamepad via vgamepad (XBOX controller emulation)
+  - **macOS/Linux**: Keyboard control via pynput (WASD keys)
+- **Visual Feedback**: Transparent overlay window with real-time UI indicators
+  - Animated steering wheel showing turn angle
+  - Throttle and brake indicators
+  - Hand position tracking
+- **Customizable Presets**: Save and load different control configurations
+- **Calibration Mode**: Toggle with 'K' key to fine-tune hand detection ranges
+- **Scalable UI**: Adjustable window size (default 30% scale for non-intrusive overlay)
+- **Anti-aliased Graphics**: Smooth rendering using pygame's gfxdraw
+- **Performance Optimized**: Efficient frame processing with configurable FPS
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Platform-Specific Notes
+
+### Windows
+- Uses virtual XBOX controller emulation via vgamepad
+- Requires uncommenting `vgamepad` in requirements.txt before installation
+- Best compatibility with games that support XBOX controllers
+- TKParam library provides interactive calibration controls
+
+### macOS
+- Uses keyboard control (WASD keys: A=left, D=right, W=throttle, S=brake)
+- No additional setup required beyond standard dependencies
+- TKParam GUI is disabled due to macOS threading limitations
+- Use preset files in `Presets/` directory for calibration adjustments
+
+### Linux
+- Uses keyboard control (WASD keys)
+- Requires pynput dependency
+- Similar to macOS setup
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -42,18 +82,72 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-You may run the app by the following steps.
-
 ### Prerequisites
-  ```sh
-  pip install -r requirements.txt
-  ```
-_Of course you can use other package management tools!_
+
+1. **Python 3.8+** (tested with Python 3.11.6)
+2. **Webcam** - Built-in or external USB camera
+3. **Platform-specific requirements**:
+   - **Windows**: Uncomment `vgamepad` in `requirements.txt` for gamepad emulation
+   - **macOS/Linux**: Default configuration uses keyboard control (no extra steps)
+
+### Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Rostave/controller-liberator.git
+   cd controller-liberator
+   ```
+
+2. Install dependencies:
+   
+   **For macOS/Linux users:**
+   ```sh
+   pip install -r requirements.txt
+   ```
+   
+   **For Windows users (virtual gamepad support):**
+   - First, uncomment the `vgamepad` line in `requirements.txt`
+   - Then install:
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+3. (Optional) Configure settings in `sysconfig.ini`:
+   - Adjust camera resolution, FPS display, MediaPipe settings
+   - Change default preset or calibration key
 
 ### Running
+
 ```sh
 python main.py
 ```
+
+### Controls
+
+- **K key**: Toggle calibration mode (Windows only with TKParam)
+- **ESC**: Exit application
+- **Hand gestures**:
+  - Raise both hands above shoulders: Throttle
+  - Lower both hands below hips: Brake
+  - Move hands left/right: Steering
+
+### Troubleshooting
+
+**Camera not detected:**
+- Check camera permissions in system settings
+- Try changing camera index in code (default is 0)
+
+**Windows: Game not responding to controls:**
+- Ensure vgamepad is installed
+- Check if game supports XBOX controllers
+
+**macOS: Program crashes on 'K' key:**
+- This is expected - TKParam GUI is disabled on macOS
+- Use preset JSON files in `Presets/` directory for calibration
+
+**Performance issues:**
+- Lower camera resolution in `sysconfig.ini`
+- Reduce MediaPipe model complexity (set to 0 or 1)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

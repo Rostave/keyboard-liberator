@@ -1,13 +1,35 @@
-# Core dependencies
+# ============================================
+# Controller Liberator - Dependencies
+# ============================================
+# This project supports Windows, macOS, and Linux
+# Platform-specific notes are indicated below
+
+# Core dependencies (all platforms)
 mediapipe==0.10.21
 opencv-python==4.11.0.86
 pygame==2.6.1
-pynput==1.8.1
-
-# Virtual gamepad (Windows/Linux only - skip on macOS)
-# vgamepad  # Uncomment on Windows/Linux
-
-# Additional dependencies
 numpy>=1.26.4
 protobuf>=4.25.3
 attrs>=25.4.0
+
+# Platform-specific dependencies
+# --------------------------------
+# macOS/Linux: Uses pynput for keyboard control
+pynput==1.8.1
+
+# Windows only: Virtual gamepad support
+# Uncomment the line below if you are on Windows:
+# vgamepad
+
+# Installation instructions:
+# --------------------------------
+# All platforms:
+#   pip install -r requirements.txt
+#
+# Windows users (for virtual gamepad):
+#   Uncomment vgamepad line above, then:
+#   pip install -r requirements.txt
+#
+# macOS/Linux users:
+#   The default requirements work out of the box
+#   (uses keyboard control via pynput)
