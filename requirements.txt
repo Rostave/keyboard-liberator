@@ -2,6 +2,7 @@
 mediapipe==0.10.21
 opencv-python==4.11.0.86
 pygame==2.6.1
+pynput==1.8.1
 
 # Virtual gamepad (Windows/Linux only - skip on macOS)
 # vgamepad  # Uncomment on Windows/Linux
