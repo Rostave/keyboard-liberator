@@ -131,6 +131,10 @@ python main.py
   - Lower both hands below hips: Brake
   - Move hands left/right: Steering
 
+### Sample Game
+- **Game Link**: Download the sample game for Mac and Windows on: https://flamberge-backtrace.itch.io/simple-car-simulator
+
+
 ### Troubleshooting
 
 **Camera not detected:**
