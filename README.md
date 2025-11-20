@@ -125,11 +125,13 @@ python main.py
 ### Controls
 
 - **K key**: Toggle calibration mode (Windows only with TKParam)
-- **ESC**: Exit application
 - **Hand gestures**:
-  - Raise both hands above shoulders: Throttle
-  - Lower both hands below hips: Brake
-  - Move hands left/right: Steering
+  - **Throttle**: Increase the spacing between the fists, and let both fists land inside the red band. 
+The closer your hands get to the red outer ring, the more you accelerate.
+  - **Brake**: Decrease the spacing between the fists, and let both fists land inside the blue band. 
+The closer your hands get to the blue inner ring, the more you decelerate.
+  - **Steering**: Turning both hands as if holding a steering wheel
+- Press close window button to exit the program, the system will ask whether to save the current preset.
 
 ### Sample Game
 - **Game Link**: Download the sample game for Mac and Windows on: https://flamberge-backtrace.itch.io/simple-car-simulator
